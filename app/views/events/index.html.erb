@@ -1,0 +1,41 @@
+<% if current_user.present? %>
+
+  <div class="container">
+    <div class="row pt-3 pb-3">
+      <div class="col-2">
+        <%= link_to 'New event', new_event_path, {:class=>"btn btn-info"} %>
+      </div>
+      <div class="col-10">
+        <h2>events</H2>
+      </div>
+    </div>
+    <div class="table-responsive-md">
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col" colspan="3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% c=0 %>
+          <% @events.each do |event| %>
+            <tr>
+              <td><%= c +=1 %></td>
+              <td><%= event.name %></td>
+              <td><%= truncate event.description, length: 160, :escape => false %></td>
+              <td><%= link_to 'Show', event %></td>
+              <td><%= link_to 'Edit', edit_event_path(event) %></td>
+              <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<% else %>
+  <%= render 'events/index' %>
+<% end %>

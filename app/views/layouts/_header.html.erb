@@ -1,0 +1,106 @@
+<div class="container d-none d-lg-block">
+  <div class="row pt-2">
+    <div class="col-sm-6 col-xs-12 phone-mail">  
+      <ul class="list-unstyled list-inline">
+        <li class="text-light">Call : <%= session[:contact]['phone'] if session[:contact].present? %></li>
+      </ul>                                  
+    </div>
+    <div class="col-sm-6 col-xs-12">
+      
+      <div class="text-center text-md-right">
+        <ul class="list-unstyled list-inline">
+          <% if session[:contact].present? %>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1 text-white" href="<%= session[:contact]['facebook'] %>">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>          
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1 text-white" href="<%= session[:contact]['twitter'] %>">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1 text-white" href="<%= session[:contact]['gplus'] %>">
+                <i class="fab fa-google-plus-g"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1 text-white"  href="<%= session[:contact]['linkedin'] %>">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>          
+          <% end %>
+
+          <li class="list-inline-item">
+            <% if current_user.present? %>
+              <a class="btn-floating btn-sm rgba-white-slight mx-1 text-dark " href="/logout" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+              </a>
+            <% else %>
+              <a class="btn-floating btn-sm rgba-white-slight mx-1 text-dark" href="/login" title="Login">
+                <i class="fas fa-sign-in-alt"></i>
+              </a>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="den_nav p-1">
+  <div class="container-fluid p-1">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-transparent">
+      <%= link_to(image_tag(session[:about]['image_thumb'], alt: 'Card image cap', :class=> "d-none d-sm-block pr-3", :width=> "80px"), "/") if session[:about].present? %>
+      <div class=" navbar-brand">
+        <div class="h5" href="/"><%= session[:about]['name'] if session[:about].present? %>
+          <div class="h6 d-none d-sm-block"><small><em>FACTORY AUTOMATION, ELECTRICAL TROUBLESHOOTING & TRADING</em></small></div>
+        </div>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbarSupportedContent" class="navbar-collapse collapse">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <ul class="navbar-nav">
+          <% session[:sitemap].each do |page| %>
+            <% case page['link'] %>
+            <% when 'products' %>          
+              <li class="nav-item dropdown p-1">
+                <a class="nav-link dropdown-toggle <%= controller_name == page['link'] ? 'text-white' : '' %>" href="#" data-target="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= page['name'] %>
+                </a>
+                <div class="dropdown-menu bg-default" aria-labelledby="navbarDropdown" id="navbarDropdown" role="menu">
+                  <% Product.all.each do |product| %>
+                    <%= link_to product.name, product, :class=>"dropdown-item" %>
+                  <% end %>
+                </div>
+              </li>
+            <% else %>
+              <% if page['sub1_name'].present? %>            
+                <li class="nav-item dropdown p-1">
+                  <a class="nav-link dropdown-toggle <%= controller_name == page['link'] ? 'text-white' : '' %>" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= page['name'] %>
+                  </a>
+                  <div class="dropdown-menu bg-default" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/<%= page['sub1_link'] %>"><%= page['sub1_name'] %></a>
+                    <% if page['sub2_name'].present? %>
+                      <a class="dropdown-item" href="/<%= page['sub2_link'] %>"><%= page['sub2_name'] %></a>
+                    <% end %>
+                  </div>
+                </li>
+              <% else %>
+                <li class="nav-item p-1">
+                  <a class="nav-link <%= controller_name == page['link'] ? 'text-white' : '' %>" href="/<%= page['link'] %>"><%= page['name'] %></a>
+                </li>
+              <% end %>
+            <% end %>
+          <% end if session[:sitemap].present? %>
+
+        </ul>
+      </div>
+
+    </nav>
+  </div>
+</div>

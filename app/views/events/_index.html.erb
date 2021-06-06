@@ -1,0 +1,47 @@
+
+  <div class="container">
+		<div class="row pt-0">
+			<div class="col-lg-4 pb-2">
+	    	<% if controller_name == 'home' %>
+					<H1 class="text-white">Events</H1>
+				<% else %>
+					<H1 class="text-dark">Events</H1>
+				<% end %>
+			</div>
+		</div>
+
+    <% @events.each do |event| %>
+      <div class="card mb-3">
+			  <div class="row no-gutters">
+			    <div class="col-md-2 text-center p-2 d-none d-sm-block">
+            <p class="display-1 pb-0"><%= event.created_at.strftime("%d") %></p>
+            <hr>
+            <p class="pt-0"><strong><%= event.created_at.strftime("%B %Y") %></strong></p>               
+			    </div>
+			    <div class="col-md-3 d-none d-sm-block">
+			      <% if event.image? %>
+              <%= link_to(image_tag(event.image.thumb.url, alt: "Image #{event.name}", :class=> "card-img"), event.image.url) if event.image? %>
+            <% else %>
+              <img class="card-img" src="https://source.unsplash.com/user/erondu/300x300" alt="Card image cap">
+            <% end %>
+			    </div>
+			    <div class="col-md-7">
+			      <div class="card-body">
+			        <h5 class="card-title"><%= event.name %></h5>
+			        <p class="card-text pb-5"><%= truncate event.description, length: 160, :escape => false %></p>
+			      </div>
+			      <div class="card-footer text-muted" style="position: absolute;    bottom: 0;    width: 100%;">
+						  <%= link_to "More Detail", event, {:class=> "btn btn-info"} %>
+						</div>
+			    </div>
+			  </div>
+			</div>
+    <% end %>
+    <% if controller_name == 'home' %>
+			<div class="row pt-3">
+				<div class="col">
+					<%= link_to 'More Events', '/events', :class=>"btn btn-light" %>
+				</div>
+			</div>
+		<% end %>
+  </div>

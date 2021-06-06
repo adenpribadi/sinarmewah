@@ -1,0 +1,52 @@
+<%= form_with(model: page, local: true) do |form| %>
+  <% if page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+      <ul>
+      <% page.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :page_name %>
+  </div>
+  <div class="field">
+    <%= form.label :sequence %>
+    <%= form.number_field :sequence, id: :page_sequence %>
+  </div>
+  <div class="field">
+    <%= form.label :link %>
+    <%= form.text_field :link, id: :page_link %>
+  </div>
+  <hr>
+  <div class="field">
+    <%= form.label :sub1_name %>
+    <%= form.text_field :sub1_name, id: :page_sub1_name %>
+  </div>
+  <div class="field">
+    <%= form.label :sub1_link %>
+    <%= form.text_field :sub1_link, id: :page_sub1_link %>
+  </div>
+  <div class="field">
+    <%= form.label :sub2_name %>
+    <%= form.text_field :sub2_name, id: :page_sub2_name %>
+  </div>
+  <div class="field">
+    <%= form.label :sub2_link %>
+    <%= form.text_field :sub2_link, id: :page_sub2_link %>
+  </div>
+  <hr>
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status, id: :page_status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

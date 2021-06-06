@@ -1,0 +1,69 @@
+<div class="grid-body">
+  <br>
+  <%= form_with(model: service, local: true) do |form| %>
+    <% if service.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(service.errors.count, "error") %> prohibited this service from being saved:</h2>
+
+        <ul>
+        <% service.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row pb-1">
+      <div class="col-md-2">
+        <%= form.label :name, class:"form-label" %>
+      </div>
+      <div class="col-md-8">
+        <%= form.text_field :name, id: :service_name, :class=> "form-control" %>
+      </div>
+    </div>
+    <div class="row pb-1">
+      <div class="col-md-2">
+        <%= form.label :description, class:"form-label" %>
+      </div>
+      <div class="col-md-8">
+        <%= form.cktext_area :description, id: :service_description, :class=> "form-control" %>
+      </div>
+    </div>
+    <div class="row pb-1">
+      <div class="col-md-2">
+        <%= form.label :image, class:"form-label" %>
+      </div>
+      <div class="col-md-8">
+        <%= form.file_field :image, id: :service_image, :class=> "form-control" %>
+      </div>
+    </div>
+    <hr>
+    <% (1..6).each do |c| %>
+      <div class="row pb-1">
+        <div class="col-md-2">
+          <%= form.label "item_#{c}", class:"form-label" %>
+        </div>
+        <div class="col-md-2">
+          <%= form.file_field "item_#{c}_image", id: "service_item_#{c}_image", :class=> "form-control" %>
+        </div>
+        <div class="col-md-3">
+          <%= form.text_field "item_#{c}_title", id: "service_item_#{c}_title", :class=> "form-control", :placeholder=> "Title item #{c}" %>
+        </div>
+        <div class="col-md-5">
+          <%= form.text_field "item_#{c}_description", id: "service_item_#{c}_description", :class=> "form-control", :placeholder=> "Description item #{c}" %>
+        </div>
+      </div>
+    <% end %>
+
+    <hr>
+    <div class="row">
+      <div class="col-md-2 p-1">
+        <%= link_to 'Back', services_path, class: "btn btn-secondary btn-block" %>
+      </div>
+      <div class="col-md-6"></div>
+      <div class="col-md-2 p-1"><%= form.submit "Save", class: "btn btn-primary btn-block" %></div>
+    
+    </div>
+
+  <% end %>
+</div>

@@ -1,0 +1,52 @@
+<div class="grid-body">
+  <br>
+  <%= form_with(model: sales, local: true) do |form| %>
+    <% if sales.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(sales.errors.count, "error") %> prohibited this sales from being saved:</h2>
+
+        <ul>
+        <% sales.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row pb-1">
+      <div class="col-md-2">
+        <%= form.label :name, class:"form-label" %>
+      </div>
+      <div class="col-md-8">
+        <%= form.text_field :name, id: :sales_name, :class=> "form-control" %>
+      </div>
+    </div>
+    <div class="row pb-1">
+      <div class="col-md-2">
+        <%= form.label :description, class:"form-label" %>
+      </div>
+      <div class="col-md-8">
+        <%= form.cktext_area :description, id: :sales_description, :class=> "form-control" %>
+      </div>
+    </div>
+    <div class="row pb-1">
+      <div class="col-md-2">
+        <%= form.label :image, class:"form-label" %>
+      </div>
+      <div class="col-md-8">
+        <%= form.file_field :image, id: :sales_image, :class=> "form-control" %>
+      </div>
+    </div>
+
+    <hr>
+    <div class="row">
+      <div class="col-md-2 p-1">
+        <%= link_to 'Back', sales_path, class: "btn btn-secondary btn-block" %>
+      </div>
+      <div class="col-md-6"></div>
+      <div class="col-md-2 p-1"><%= form.submit "Save", class: "btn btn-primary btn-block" %></div>
+    
+    </div>
+
+  <% end %>
+</div>

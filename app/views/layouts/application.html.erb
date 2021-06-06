@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= yield_meta_tag(:title, 'SINAR MEWAH TEKNIK | FACTORY AUTOMATION, ELECTRICAL TROUBLESHOOTING & TRADING') %></title>
+    <%= csrf_meta_tags %>
+    <%= canonical_tag -%>
+    <% if content_for?(:meta_og) %>
+      <%= yield :meta_og %>
+    <% else %>
+      <meta property="og:title" content="SINAR MEWAH TEKNIK" />
+      <meta property="og:description" content="FACTORY AUTOMATION, ELECTRICAL TROUBLESHOOTING & TRADING" />
+      <meta property="og:type" content="website" />
+      <%= tag :meta, property: 'og:image', content: image_url(session[:about]['image_thumb']) if session[:about].present? %>
+    <% end %>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='description'
+      content='<%= yield_meta_tag(:description, 'FACTORY AUTOMATION, ELECTRICAL TROUBLESHOOTING & TRADING') %>' />
+    <meta name='keywords'
+      content='<%= yield_meta_tag(:keywords, 'FACTORY AUTOMATION, ELECTRICAL TROUBLESHOOTING & TRADING') %>' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <script src="https://kit.fontawesome.com/1ad6f5e62d.js" crossorigin="anonymous"></script>
+    
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag session[:about]['image_thumb'], sizes: '16x16 32x32' if session[:about].present? %>
+
+    <%= javascript_include_tag Ckeditor.cdn_url %>
+  </head>
+
+  <body>
+  	<div class="container-fluid p-0 bg-default">
+  		<%= render 'layouts/header' %>
+  	</div>
+    
+	  <%= yield %>
+	  <div class="pt-5"></div>
+	  <div class="pt-5"></div>
+  	<%= render 'layouts/footer' %>
+
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "sinarmewah.com",
+        "email": "support@sinarmewah.com",
+        "url": "https://sinarmewah.com",
+        "logo": "https://sinarmewah.com/uploads/about/image/1/logo.png",
+        "foundingDate": "2016-03-06",
+        "founder": {
+          "@type": "Person",
+          "name": "Jamalkurniawan"
+        },
+        "foundingLocation": {
+          "@type": "Place",
+          "address": "Cikarang, OR"
+        }
+
+      }
+    </script>
+		<!--Start of Tawk.to Script-->
+      <script type="text/javascript">
+        window.$_Tawk = undefined; 
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/<%= session[:tawk_account_id] %>/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+      </script>
+    <!--End of Tawk.to Script-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154421281-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-154421281-1');
+      </script>
+
+  </body>
+</html>

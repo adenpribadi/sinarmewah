@@ -1,0 +1,55 @@
+<%= form_with(model: about, local: true) do |form| %>
+  <% if about.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(about.errors.count, "error") %> prohibited this about from being saved:</h2>
+
+      <ul>
+      <% about.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row pb-1">
+    <div class="col-md-2">
+      <%= form.label :name %>
+    </div>
+    <div class="col-md-8">
+      <%= form.text_field :name, id: :about_name, :class=>"form-control" %>
+    </div>
+  </div>
+
+  <div class="row pb-1">
+    <div class="col-md-2">
+      <%= form.label :description %>
+    </div>
+    <div class="col-md-10">
+      <%= form.cktext_area :description, id: :about_description, :class=>"form-control", :size=> "2x10" %>
+    </div>
+  </div>
+  <div class="row pb-1">
+    <div class="col-md-2">
+      <%= form.label :description_footer %>
+    </div>
+    <div class="col-md-10">
+      <%= form.text_area :description_footer, id: :about_description_footer, :class=>"form-control", :size=> "2x5" %>
+    </div>
+  </div>
+
+  <div class="row pb-1">
+    <div class="col-md-2">
+      <%= form.label :image, class:"form-label" %>
+    </div>
+    <div class="col-md-4">
+      <%= form.file_field :image, id: :product_image, :class=> "form-control" %>
+    </div>
+  </div>
+
+
+  <div class="row pb-1">
+    <div class="col-md-10"></div>
+    <div class="col-md-2"><%= form.submit "Save", class: "btn btn-primary btn-block" %>
+    </div>
+  </div>
+<% end %>

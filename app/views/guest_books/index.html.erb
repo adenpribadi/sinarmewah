@@ -1,0 +1,82 @@
+<% if current_user.present? %>
+  <div class="container">
+    <div class="row pt-3 pb-3">
+      <div class="col-2">
+        <%= link_to 'New Guest Book', new_guest_book_path, {:class=>"btn btn-info"} %>
+      </div>
+      <div class="col-10">
+        <h2>guest books</h2>
+      </div>
+    </div>
+    <div class="table-responsive-md">
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Comment</th>
+            <th scope="col" colspan="2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% c=0 %>
+          <% @guest_books.each do |guest_book| %>
+            <tr>
+              <td><%= c+=1 %></td>
+              <td><%= guest_book.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+              <td><%= guest_book.name %></td>
+              <td><%= guest_book.email %></td>
+              <td><%= guest_book.subject %></td>
+              <td><%= truncate guest_book.comment, length: 160, :escape => false %></td>
+              <td><%= link_to 'Show', guest_book %></td>
+              <td><%= link_to 'Destroy', guest_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% else %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 pt-5">
+        <div class="grid simple">
+          <div class="grid-title">
+            <h4>
+              <span class="semi-bold">Get in touch</span>
+            </h4>
+          </div>
+          <%= render 'form', guest_book: @guest_book %>
+
+        </div>
+      </div>
+      <div class="col-md-4 pt-5 ">
+        <div class="row">
+          <div class="col">
+            <div class="grid simple">
+              <div class="grid-title">
+                <h4>
+                  <span class="semi-bold">Office Address</span>
+                </h4>
+              </div>
+              <% if session[:contact].present? %>
+                <p><i class="<%= session[:contact]['icon_address'] %>"></i> <%= session[:contact]['address'] %></p>
+                <p><i class="<%= session[:contact]['icon_email'] %>"></i> <%= session[:contact]['email'] %></p>
+                <p><i class="<%= session[:contact]['icon_phone'] %>"></i> <%= session[:contact]['phone'] %></p>
+                <p><i class="<%= session[:contact]['icon_fax'] %>"></i> <%= session[:contact]['fax'] %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <%= render 'map' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

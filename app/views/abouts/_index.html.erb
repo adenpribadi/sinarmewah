@@ -1,0 +1,35 @@
+<% if @abouts.present? %>
+  
+  <div class="container">
+    <div class="row pt-5">
+      <div class="col-lg-4 pb-2">
+        <H1 class="text-dark">Abouts</H1>
+      </div>
+    </div>
+    <div class="row">
+      <% @abouts.each do | about | %>
+        <div class="col-md-8 pt-1">
+          <div class="grid simple">
+            <div class="grid-title">
+              <h4>
+                <span class="semi-bold"><%= about.name %> <%= link_to 'Edit', edit_about_path(about) if current_user.present? %></span>
+              </h4>
+            </div>
+            <div class="grid-body">
+              <%= about.description.html_safe %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 pt-5">
+          <div class="card w-100 p-2" style="width: 18rem;">
+            <%= image_tag(about.image.url, alt: 'Card image cap', :class=> "") if about.image? %>
+          </div>
+        </div>
+
+      <% end if @abouts.present? %>
+    </div>
+  </div>
+<% else %>
+  <%= link_to 'New About', new_about_path, {:class=>"btn btn-info"} %>
+<% end %>
+

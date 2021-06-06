@@ -1,0 +1,134 @@
+
+<!-- Footer -->
+<div class="bg-default p-1"></div>
+<footer class="page-footer font-small bg-dark text-white pt-4 copytight_info">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Footer links -->
+    <div class="row text-center text-md-left mt-3 pb-3">
+
+      <!-- Grid column -->
+      <% if session[:about].present? %>
+        <div class="col-md-5 col-lg-5 col-xl-5 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold"><%= session[:about]['name'] %></h6>
+          <div>
+            <%= truncate session[:about]['description_footer'], length: 250, :escape => false %>
+            <%= link_to 'more', '/abouts', :class=>"text-light" %>
+          </div>
+        </div>
+      <% end %>
+      <!-- Grid column -->
+
+      <hr class="w-100 clearfix d-md-none">
+
+      <!-- Grid column -->
+
+      <hr class="w-100 clearfix d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Sitemap</h6>
+        <ul class="list-unstyled">
+          <% session[:sitemap].each do |page| %>
+            <li class="nav-item p-1">
+              <a class="nav-link p-0 text-white" href="/<%= page['link'] %>"><%= page['name'] %></a>
+            </li>
+          <% end if session[:sitemap].present? %>
+        </ul>
+      </div>
+
+      <!-- Grid column -->
+      <hr class="w-100 clearfix d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+        <% if session[:contact].present? %>
+          <h6 class="text-uppercase mb-4 font-weight-bold">Contact <%= link_to 'Edit', "/contacts/#{session[:contact]['id']}/edit" if current_user.present? %></h6>
+          <p><i class="<%= session[:contact]['icon_address'] %>"></i> <%= session[:contact]['address'] %></p>
+          <p><i class="<%= session[:contact]['icon_email'] %>"></i> <%= session[:contact]['email'] %></p>
+          <p><i class="<%= session[:contact]['icon_phone'] %>"></i> <%= session[:contact]['phone'] %></p>
+          <p><i class="<%= session[:contact]['icon_fax'] %>"></i> <%= session[:contact]['fax'] %></p>
+        <% end %>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Footer links -->
+
+    <hr>
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8">
+
+        <!--Copyright-->
+        <p class="text-center text-md-left">© <%= DateTime.now().strftime("%Y")%> Copyright:
+          <a href="https://vzveda.com" class="text-warning">
+            <strong> vzveda.com</strong>
+          </a>
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <% if session[:contact].present? %>
+              <li class="list-inline-item">
+                <a class="btn-floating btn-sm rgba-white-slight mx-1 text-white" href="<%= session[:contact]['facebook'] %>">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>          
+              <li class="list-inline-item">
+                <a class="btn-floating btn-sm rgba-white-slight mx-1 text-white" href="<%= session[:contact]['twitter'] %>">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a class="btn-floating btn-sm rgba-white-slight mx-1 text-white" href="<%= session[:contact]['gplus'] %>">
+                  <i class="fab fa-google-plus-g"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a class="btn-floating btn-sm rgba-white-slight mx-1 text-white"  href="<%= session[:contact]['linkedin'] %>">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>          
+            <% end %>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+</footer>
+<!-- Footer -->
+
+
+    <!--Start of Tawk.to Script-->
+      <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5df06cc843be710e1d2187c0/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+      </script>
+    <!--End of Tawk.to Script-->

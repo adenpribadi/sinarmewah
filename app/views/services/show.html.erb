@@ -1,0 +1,130 @@
+<% meta_tag :title, "#{@service.name} | Services" %>
+<% meta_tag :description, @service.description %>
+<% meta_tag :keywords, @service.description %>
+
+<div class="container">
+	<div class="border shadow-sm p-3 mb-5 bg-white rounded">
+		<div class="row pl-3">
+			<h2><strong>Services</strong></h2>
+		</div>
+		<div class="row pt-3">
+		  <div class="col-md-2 pb-3">
+		  	<div class="card w-100 p-2" style="width: 18rem;">
+		  		<%= image_tag(@service.image.url, alt: "Image #{@service.name}", :class=> "card-img-top") if @service.image? %>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<H1><%= @service.name %></H1>
+				<hr>
+		    <p class=" h6">
+		    	<%= @service.description.html_safe if @service.description.present? %>
+		    </p>
+			</div>
+
+		</div>
+
+    <div class="row pb-1">
+    	<% if @service.item_1_image? %>		  			
+			  <div class="col-lg-4 col-6 pb-2">
+			  	<div class="card w-100 p-0 bg-transparent" style="width: 18rem;">
+	          <%= link_to(image_tag(@service.item_1_image.thumb.url, alt: "Image #{@service.item_1_title}", :class=> "card-img-top bg-white"), @service) %>
+	          <div class="card-body p-1 bg-default text-center" style="
+							    position: absolute;
+							    bottom: 0;
+							    width: 100%;
+							">
+					  	<h6 class="text-white"><%= @service.item_1_title %></h6>
+					  </div>
+					</div>
+				</div>
+			<% end %>
+	    <% if @service.item_2_image? %>
+			  <div class="col-lg-4 col-6 pb-2">
+			  	<div class="card w-100 p-0 bg-transparent" style="width: 18rem;">
+			  		<%= link_to(image_tag(@service.item_2_image.thumb.url, alt: "Image #{@service.item_2_title}", :class=> "card-img-top bg-white"), @service) %>
+	          
+					  <div class="card-body p-1 bg-default text-center" style="
+							    position: absolute;
+							    bottom: 0;
+							    width: 100%;
+							">
+					  	<h6 class="text-white"><%= @service.item_2_title %></h6>
+					  </div>
+					</div>
+				</div>
+			<% end %>
+			<% if @service.item_3_image? %>
+			  <div class="col-lg-4 col-6 pb-2">
+			  	<div class="card w-100 p-0 bg-transparent" style="width: 18rem;">
+	          <%= link_to(image_tag(@service.item_3_image.thumb.url, alt: "Image #{@service.item_3_title}", :class=> "card-img-top bg-white"), @service) %>
+	          <div class="card-body p-1 bg-default text-center" style="
+							    position: absolute;
+							    bottom: 0;
+							    width: 100%;
+							">
+					  	<h6 class="text-white"><%= @service.item_3_title %></h6>
+					  </div>
+					</div>
+				</div>
+			<% end %>
+			<% if @service.item_4_image? %>
+			  <div class="col-lg-4 col-6 pb-2">
+			  	<div class="card w-100 p-0 bg-transparent" style="width: 18rem;">
+			  		<%= link_to(image_tag(@service.item_4_image.thumb.url, alt: "Image #{@service.item_4_title}", :class=> "card-img-top bg-white"), @service) %>
+	          <div class="card-body p-1 bg-default text-center" style="
+							    position: absolute;
+							    bottom: 0;
+							    width: 100%;
+							">
+					  	<h6 class="text-white"><%= @service.item_4_title %></h6>
+					  </div>
+					</div>
+				</div>
+			<% end %>
+			<% if @service.item_5_image? %>
+			  <div class="col-lg-4 col-6 pb-2">
+			  	<div class="card w-100 p-0 bg-transparent" style="width: 18rem;">
+	          <%= link_to(image_tag(@service.item_5_image.thumb.url, alt: "Image #{@service.item_5_title}", :class=> "card-img-top bg-white"), @service) %>
+	          <div class="card-body p-1 bg-default text-center" style="
+							    position: absolute;
+							    bottom: 0;
+							    width: 100%;
+							">
+					  	<h6 class="text-white"><%= @service.item_5_title %></h6>
+					  </div>
+					</div>
+				</div>
+			<% end %>
+			<% if @service.item_6_image? %>
+			  <div class="col-lg-4 col-6 pb-2">
+			  	<div class="card w-100 p-0 bg-transparent" style="width: 18rem;">
+	          <%= link_to(image_tag(@service.item_6_image.thumb.url, alt: "Image #{@service.item_6_title}", :class=> "card-img-top bg-white"), @service) %>
+	          <div class="card-body p-1 bg-default text-center" style="
+							    position: absolute;
+							    bottom: 0;
+							    width: 100%;
+							">
+					  	<h6 class="text-white"><%= @service.item_6_title %></h6>
+					  </div>
+					</div>
+				</div>
+			<% end %>
+    </div>
+
+
+    <hr>
+    <div class="row">
+      <div class="col-md-2 p-1">
+      	<% if current_user.present? %>
+        	<%= link_to 'Back', services_path, class: "btn btn-secondary btn-block" %>
+        <% else %>
+        	<%= link_to 'Back', root_path, class: "btn btn-secondary btn-block" %>
+        <% end %>
+      </div>
+      <div class="col-md-8"></div>
+      <div class="col-md-2 p-1">
+        <%= link_to 'Edit', edit_service_path(@service), class: "btn btn-primary btn-block" if current_user.present? %>
+      </div>
+    </div>
+	</div>
+</div>

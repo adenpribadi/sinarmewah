@@ -1,0 +1,35 @@
+.den_nav {
+ background-image: url("honeycombregular-hexagon.png");
+ background-color: #cccccc;
+}
+
+.welcome {
+  max-height: 1000px;
+  background-color: #ffffff !important;
+
+}
+.popular_cources {
+   background-image: url("hiclipart.com (2).png");
+  max-height: 1000px;
+  background-color: #ffffff !important;
+
+}
+
+
+
+.popular_events {
+	 background-image: url("hiclipart.com (3).png");
+  max-height: 1000px;
+  background-color: #1e5186 !important;	
+}
+
+footer .copytight_info {
+	    padding: 20px 0;
+    background: #2f3133;
+    margin-top: 20px;
+    border-top: 1px solid #444648;
+}
+
+.bg-default {
+	background-color: #1e5186!important;
+}

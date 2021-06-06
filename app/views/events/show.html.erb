@@ -1,0 +1,44 @@
+<% meta_tag :title, "Events" %>
+<% meta_tag :description, @event.description %>
+<% meta_tag :keywords, @event.description %>
+<div class="container">
+	<div class="border shadow-sm p-3 mb-5 bg-white rounded">
+		<div class="row pl-3">
+			<h2><strong>event</strong></h2>
+		</div>
+		<div class="row pt-3">
+		  <div class="col-md-6 pb-3">
+		  	<div class="card w-100 p-2" style="width: 18rem;">
+          <% if @event.image? %>
+		  			<%= image_tag(@event.image.url, alt: "Image #{@event.name}", :class=> "card-img-top") %>
+          <% else %>
+            <img class="card-img" src="https://source.unsplash.com/user/erondu/300x300" alt="Card image cap">
+          <% end %>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<H1><%= @event.name %></H1>
+				<hr>
+		    <p class=" h6">
+		    	<%= @event.description.html_safe %>
+		    </p>
+			</div>
+
+		</div>
+
+    <hr>
+    <div class="row">
+      <div class="col-md-2 p-1">
+      	<% if current_user.present? %>
+        	<%= link_to 'Back', events_path, class: "btn btn-secondary btn-block" %>
+        <% else %>
+        	<%= link_to 'Back', root_path, class: "btn btn-secondary btn-block" %>
+        <% end %>
+      </div>
+      <div class="col-md-8"></div>
+      <div class="col-md-2 p-1">
+        <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-primary btn-block" if current_user.present? %>
+      </div>
+    </div>
+	</div>
+</div>

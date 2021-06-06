@@ -1,0 +1,21 @@
+<div class="container">
+	<div class="row">
+	    <div class="col-md-8 pt-5">
+        <div class="grid simple">
+          <div class="grid-title">
+            <h4>
+              <span class="semi-bold"><%= @about.name %> <%= link_to 'Edit', edit_about_path(@about) if current_user.present? %></span>
+            </h4>
+          </div>
+          <div class="grid-body">
+            <%= @about.description.html_safe %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 pt-5">
+        <div class="card w-100 p-2" style="width: 18rem;">
+          <%= image_tag(@about.image.url, alt: 'Card image cap', :class=> "") if @about.image? %>
+        </div>
+      </div>
+	</div>
+</div>

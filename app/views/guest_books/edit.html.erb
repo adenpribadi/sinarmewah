@@ -1,0 +1,32 @@
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 pt-5">
+        <div class="grid simple">
+          <div class="grid-title">
+            <h4>
+              <span class="semi-bold">Get in touch</span>
+            </h4>
+          </div>
+
+					<%= render 'form', guest_book: @guest_book %>
+				</div>
+			</div>
+      <div class="col-md-4 pt-5 ">
+        <div class="grid simple">
+          <div class="grid-title">
+            <h4>
+              <span class="semi-bold">Office Address</span>
+            </h4>
+          </div>
+          <% if session[:contact].present? %>
+            <p><i class="<%= session[:contact]['icon_address'] %>"></i> <%= session[:contact]['address'] %></p>
+            <p><i class="<%= session[:contact]['icon_email'] %>"></i> <%= session[:contact]['email'] %></p>
+            <p><i class="<%= session[:contact]['icon_phone'] %>"></i> <%= session[:contact]['phone'] %></p>
+            <p><i class="<%= session[:contact]['icon_fax'] %>"></i> <%= session[:contact]['fax'] %></p>
+          <% end %>
+        </div>
+      </div>
+		</div>
+	</div>
+	

@@ -1,0 +1,25 @@
+<% if @abouts.present? %>
+  
+  <div class="container">
+    <div class="row">
+      <% @abouts.each do | about | %>
+        <div class="col-md-8 pt-1">
+          <div class="grid simple">
+            <div class="grid-title">
+              <h4 class="text-primary">
+                <span class="semi-bold"><%= about.name %> <%= link_to 'Edit', edit_about_path(about) if current_user.present? %></span>
+              </h4>
+            </div>
+            <div class="grid-body">
+              <%= about.description_footer.html_safe if about.description_footer.present? %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 pt-5 d-none d-sm-block">
+        </div>
+
+      <% end if @abouts.present? %>
+    </div>
+  </div>
+<% end %>
+
